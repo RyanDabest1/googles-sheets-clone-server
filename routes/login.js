@@ -6,6 +6,7 @@ const jwt = require("jsonwebtoken")
 
 router.post('/login', async function(req,res){
     const {username, password} = req.body;
+    
     if (!username || !password) {
         return res.status(400).json({ message: "Please provide username and password." });
     }
@@ -21,7 +22,7 @@ router.post('/login', async function(req,res){
             return res.status(401).json({ message: "Invalid username or password." });
         }
         const token = jwt.sign({ username: user.username }, 'DaSheet');
-        res.status(200).json({ token });
+        res.status(200).json({ token, userId : user._id });
 
     } catch(error) {
         console.error("Error logging in:", error);

@@ -9,14 +9,22 @@ const { MongoClient, ObjectId, ServerApiVersion } = require("mongodb");
 const registRouter = require('./routes/regist.js');
 const helloRouter = require('./routes/hello.js')
 const loginRouter = require('./routes/login.js')
+const createSheetRouter = require('./routes/createSheet.js')
+const getSheets = require('./routes/getSheets.js')
+const getSheetData = require('./routes/getSheetData.js');
+const saveSheet = require('./routes/saveSheet.js')
 const app = express()
 app.use(morgan('dev'));
-app.use(cors())
+app.use(cors());
 app.use(bodyParser.json());
 
 app.use('/', registRouter);
 app.use('/', helloRouter);
-app.use('/', loginRouter)
+app.use('/', loginRouter);
+app.use('/',createSheetRouter);
+app.use('/', getSheets);
+app.use('/', getSheetData);
+app.use('/',saveSheet);
 
 app.listen(3001, () => {
     console.log("Server is running on port 3001");

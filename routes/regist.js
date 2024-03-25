@@ -6,7 +6,6 @@ const { client } = require('../utils/dbClient');
 router.post('/register', async function(req, res) {
     const { username, email, password } = req.body;
 
-    // Perform validation on input fields
     if (!username || !email || !password) {
         return res.status(400).json({ message: "Please provide username, email, and password." });
     }
@@ -32,6 +31,7 @@ router.post('/register', async function(req, res) {
             password: hashPswd,
             created_at: new Date(),
             profileImage: "placeHolder.png",
+            
         };
         const result = await client.db("Sheets").collection("users").insertOne(newUser);
         
