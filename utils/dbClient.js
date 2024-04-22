@@ -1,7 +1,7 @@
 const { MongoClient, ObjectId, ServerApiVersion } = require("mongodb");
 const password = process.env.PASS;
 
-const uri = `mongodb://ryanDabest1:ILOVEANIMe@cluster0-shard-00-00.zheqh.mongodb.net:27017,cluster0-shard-00-01.zheqh.mongodb.net:27017,cluster0-shard-00-02.zheqh.mongodb.net:27017/?ssl=true&replicaSet=atlas-11l92a-shard-0&authSource=admin&retryWrites=true&w=majority`;
+const uri = `mongodb://ryanDabest1:${password}@cluster0-shard-00-00.zheqh.mongodb.net:27017,cluster0-shard-00-01.zheqh.mongodb.net:27017,cluster0-shard-00-02.zheqh.mongodb.net:27017/?ssl=true&replicaSet=atlas-11l92a-shard-0&authSource=admin&retryWrites=true&w=majority`;
 
 const client = new MongoClient(uri, {
   serverApi: {

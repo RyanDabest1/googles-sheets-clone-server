@@ -13,8 +13,13 @@ const getSheets = require('./routes/getSheets.js')
 const getSheetData = require('./routes/getSheetData.js');
 const saveSheet = require('./routes/saveSheet.js')
 const getCredentialsRouter = require('./routes/getCredentials.js')
-
+const getRecentSheetsRouter = require('./routes/getRecentSheets.js')
+const getSheetsDataInRangeRouter = require('./routes/getSheetDataInRange.js')
+const saveMergedSheetRouter = require('./routes/saveMergedSheet.js')
+const getMergedSheetsRouter = require('./routes/getMergedSheets.js')
+const getMergedSheetsDataRouter = require('./routes/getMergedSheetData.js')
 const app = express()
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(bodyParser.json());
@@ -26,6 +31,11 @@ app.use('/', getSheets);
 app.use('/', getSheetData);
 app.use('/',saveSheet);
 app.use('/',getCredentialsRouter);
+app.use('/', getRecentSheetsRouter);
+app.use('/',getSheetsDataInRangeRouter);
+app.use('/',saveMergedSheetRouter);
+app.use('/',getMergedSheetsRouter);
+app.use('/',getMergedSheetsDataRouter);
 
 app.listen(3001, () => {
     console.log("Server is running on port 3001");
