@@ -16,7 +16,7 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
       await client.connect();      
-      console.log("Connected to MongoDB and created 'Sheets' database");
+      console.log("Connected to MongoDB database");
   } catch (err) {
       console.error("Error connecting to MongoDB:", err);
   } finally {

@@ -18,6 +18,7 @@ const getSheetsDataInRangeRouter = require('./routes/getSheetDataInRange.js')
 const saveMergedSheetRouter = require('./routes/saveMergedSheet.js')
 const getMergedSheetsRouter = require('./routes/getMergedSheets.js')
 const getMergedSheetsDataRouter = require('./routes/getMergedSheetData.js')
+const deleteSheetRouter = require('./routes/deleteSheet.js');
 const app = express()
 
 app.use(morgan('dev'));
@@ -36,6 +37,7 @@ app.use('/',getSheetsDataInRangeRouter);
 app.use('/',saveMergedSheetRouter);
 app.use('/',getMergedSheetsRouter);
 app.use('/',getMergedSheetsDataRouter);
+app.use('/', deleteSheetRouter);
 
 app.listen(3001, () => {
     console.log("Server is running on port 3001");

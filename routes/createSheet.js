@@ -3,19 +3,21 @@ const router = express.Router();
 const { client } = require('../utils/dbClient');
 
 router.post('/createSheet', async function(req,res){
-    const {userId, sheetName} = req.body;
+    const {userId, sheetName, date} = req.body;
     try{
         await client.connect();
         const database = client.db('Sheets');
         const collections = await database.listCollections().toArray();
         
         let collection = database.collection('calculations');
-
-        const currentDate = new Date();
+        const createdDate = date ? new Date(date) : new Date();
+        createdDate.setMonth(createdDate.getMonth());
+        createdDate.setDate(createdDate.getDate()+1)
+        console.log(createdDate)
         const calculationData = {
             userId,
             sheetName,
-            createdAt: currentDate,
+            createdAt: createdDate,
             items : [
                 {
                     name : "18ဂျုံ",
@@ -83,7 +85,7 @@ router.post('/createSheet', async function(req,res){
         const result = await collection.insertOne(calculationData);
         console.log(`Inserted ${result.insertedCount} document into the "calculations" collection`);
 
-        res.status(201).json({ message: 'Calculation sheet created successfully' });
+        res.status(200).json({ message: 'Calculation sheet created successfully' });
     } catch (error) {
         console.error('Error creating calculation sheet:', error);
         res.status(500).json({ message: 'Internal server error' });
