@@ -12,6 +12,7 @@ router.delete('/deleteSheet', async function(req,res){
         let collection = database.collection('calculations');
         let result = await collection.deleteOne({ _id: new ObjectId(calcId), userId })
         console.log(result)
+        res.status(200).json({message : "Deleted"})
     } catch (error) {
         console.error('Error deleting sheet:', error);
         res.status(500).json({ message: 'Internal server error' });
