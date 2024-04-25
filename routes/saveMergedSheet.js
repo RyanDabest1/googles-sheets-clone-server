@@ -10,8 +10,6 @@ router.post('/saveMergedSheet', async function(req, res) {
   end.setDate(end.getDate() + 1)
 
     try {
-      console.log(start)
-      console.log(end)
     await client.connect();
     const db = client.db('Sheets'); 
     const collection = db.collection('mergedCalculations');

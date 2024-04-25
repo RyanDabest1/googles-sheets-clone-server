@@ -11,7 +11,6 @@ router.get('/getRecentSheets', async function(req, res){
 
         // Find sheets with the provided userId
         const sheets = await collection.find({ userId }).sort({ _id: -1 }).limit(3).toArray();
-        console.log(sheets)
         // Send the sheets array in the response
         res.status(200).json({ sheets });
     } catch (error) {
